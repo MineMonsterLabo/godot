@@ -3162,7 +3162,7 @@ Error CSharpScript::reload(bool p_keep_state) {
 			if (!klass) {
 				GDMono *gd_mono = GDMono::get_singleton();
 				klass = gd_mono->get_class(namespace_->operator String(), class_name->operator String());
-				GDMonoAssembly *klass_assembly = klass->get_assembly();
+				const GDMonoAssembly *klass_assembly = klass->get_assembly();
 				GDMonoAssembly *newRef;
 				gd_mono->load_assembly(get_name(), &newRef);
 			}
