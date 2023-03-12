@@ -142,7 +142,7 @@ def build_solution(env, solution_path, build_config, extra_msbuild_args=[]):
 
     # Build solution
 
-    msbuild_args += [solution_path, "/restore", "/t:Build", "/p:Configuration=" + build_config]
+    msbuild_args += [solution_path, "/restore", "/t:Build", "/p:Configuration=" + build_config, "/p:Platform=Any CPU"]
     msbuild_args += extra_msbuild_args
 
     run_command(msbuild_path, msbuild_args, env_override=msbuild_env, name="msbuild")
