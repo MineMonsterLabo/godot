@@ -3157,7 +3157,12 @@ Error CSharpScript::reload(bool p_keep_state) {
 			const Variant *class_name = script_metadata.getptr("class_name");
 			ERR_FAIL_NULL_V(namespace_, ERR_BUG);
 			ERR_FAIL_NULL_V(class_name, ERR_BUG);
+			
 			GDMonoClass *klass = project_assembly->get_class(namespace_->operator String(), class_name->operator String());
+			if (!klass) {
+				klass = GDMono::get_singleton()->get_class(namespace_->operator String(), class_name->operator String());
+			}
+			
 			if (klass && CACHED_CLASS(GodotObject)->is_assignable_from(klass)) {
 				script_class = klass;
 			}
